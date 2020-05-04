@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 @State(Scope.Benchmark)
 public class BenchmarkPlan {
 
-    @Param({ "100000", "1000000", "10000000" })
+    @Param({ "10000", "1000000", "100000000" })
     public int arraySize;
 
     private static final int MAGIC_NUMBER = 123;
