@@ -4,9 +4,7 @@ import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.RunnerException;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 @State(Scope.Benchmark)
@@ -25,6 +23,7 @@ public class BenchmarkPlan {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @BenchmarkMode(Mode.SingleShotTime)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void regularMethod() {
         int[] intArray = new int[arraySize];
         for (int index = 0; index < arraySize; index++) {
@@ -36,6 +35,7 @@ public class BenchmarkPlan {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @BenchmarkMode(Mode.SingleShotTime)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void exceptionMethod() {
         int[] intArray = new int[arraySize];
         int index = 0;
@@ -51,6 +51,7 @@ public class BenchmarkPlan {
     @Fork(value = 5)
     @Warmup(iterations = 10)
     @BenchmarkMode(Mode.SingleShotTime)
+    @OutputTimeUnit(TimeUnit.MILLISECONDS)
     public void steamMethod() {
         int[] intArray = IntStream.range(0, arraySize).map(index -> MAGIC_NUMBER * index).toArray();
     }
