@@ -24,11 +24,12 @@ public class BenchmarkPlan {
     @Warmup(iterations = 10)
     @BenchmarkMode(Mode.SingleShotTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void regularMethod() {
+    public int[] regularMethod() {
         int[] intArray = new int[arraySize];
         for (int index = 0; index < arraySize; index++) {
             intArray[index] = MAGIC_NUMBER * index;
         }
+        return intArray;
     }
 
     @Benchmark
@@ -36,7 +37,7 @@ public class BenchmarkPlan {
     @Warmup(iterations = 10)
     @BenchmarkMode(Mode.SingleShotTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void exceptionMethod() {
+    public int[] exceptionMethod() {
         int[] intArray = new int[arraySize];
         int index = 0;
         try {
@@ -45,6 +46,7 @@ public class BenchmarkPlan {
                 index++;
             }
         } catch (ArrayIndexOutOfBoundsException ignored) { }
+        return intArray;
     }
 
     @Benchmark
@@ -52,7 +54,7 @@ public class BenchmarkPlan {
     @Warmup(iterations = 10)
     @BenchmarkMode(Mode.SingleShotTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public void steamMethod() {
-        int[] intArray = IntStream.range(0, arraySize).map(index -> MAGIC_NUMBER * index).toArray();
+    public int[] steamMethod() {
+        return IntStream.range(0, arraySize).map(index -> MAGIC_NUMBER * index).toArray();
     }
 }
