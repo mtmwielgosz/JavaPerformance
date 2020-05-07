@@ -54,7 +54,7 @@ public class BenchmarkPlan {
     @Warmup(iterations = 10)
     @BenchmarkMode(Mode.SingleShotTime)
     @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    public int[] steamMethod() {
+    public int[] streamMethod() {
         return IntStream.range(0, arraySize).map(index -> MAGIC_NUMBER * index).toArray();
     }
 }
